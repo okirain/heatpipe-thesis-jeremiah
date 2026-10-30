@@ -1,0 +1,63 @@
+# BAB II TINJAUAN PUSTAKA
+
+## II.1. Perkembangan Sistem Pendingin Reaktor Daya Antariksa
+
+Pemanfaatan tenaga nuklir untuk misi penjelajahan antariksa telah dieksplorasi sejak era SNAP-10A (AS) dan program BUK serta TOPAZ (Uni Soviet) [@elgenk2009deployment]. Reaktor-reaktor awal umumnya mengandalkan fluida pendingin logam cair fase tunggal seperti NaK (eutektik natrium-kalium) yang disirkulasikan oleh pompa elektromagnetik konduksi atau induksi konvensional [@elgenk2009deployment]. Meskipun terbukti berfungsi pada orbit rendah bumi, keberadaan sistem pemompaan aktif memiliki kelemahan mendasar berupa:
+1. Memerlukan pasokan listrik eksternal yang kontinu dari generator daya,
+2. Adanya keausan material, risiko degradasi medan magnet, serta kavitasi,
+3. Menghasilkan getaran mekanik dan gangguan elektromagnetik yang merambatkan distorsi pada wahana antariksa,
+4. Tidak memiliki redundansi mandiri; jika pompa macet, seluruh sirkuit pendinginan terhenti (*loss of flow accident*).
+
+Untuk mengatasi kerentanan ini, konsep reaktor antariksa generasi lanjut beralih ke sistem pendinginan teras pasif berbasis pipa kalor (*heat pipe cooled reactors*). Konsep-konsep seperti HOMER (*Heatpipe-Operated Mars Exploration Reactor*) oleh Los Alamos National Laboratory [@poston2000heatpipe], SAIR (*Scalable AMTEC Integrated Reactor*) [@elgenk2004sair], S4 [@mencarini2018fuel], hingga Kilopower [@mcclure2020design] menempatkan pipa kalor natrium atau kalium langsung ke dalam matriks teras bahan bakar. Karakteristik pasif pipa kalor mengeliminasi kebutuhan pompa mekanik secara total, mewujudkan sistem pendinginan dengan keandalan tinggi dan toleransi kegagalan majemuk.
+
+## II.2. Pipa Kalor Logam Cair dalam Lingkungan Mikrogravitasi
+
+Pipa kalor (*heat pipe*) adalah perangkat perpindahan panas pasif berefisiensi sangat tinggi yang memanfaatkan siklus penguapan-kondensasi fluida kerja di dalam wadah tertutup kedap udara [@faghri1995heat]. Pada rentang temperatur tinggi (600--1200 K) yang menjadi karakteristik reaktor cepat antariksa, logam alkali cair seperti natrium (Na), kalium (K), dan sesium (Cs) digunakan sebagai fluida kerja karena memiliki tekanan uap moderat, panas laten penguapan ($h_{fg}$) yang sangat besar, tegangan permukaan ($\sigma$) tinggi, serta konduktivitas termal logam cair ($k_l$) yang luar biasa [@dunn1994heat].
+
+Di dalam lingkungan mikrogravitasi antariksa ($g \approx 0$), sirkulasi cairan kembali dari kondensor menuju evaporator tidak dapat dibantu oleh gaya berat (seperti pada termosifon konvensional). Oleh sebab itu, sirkulasi sepenuhnya dikendalikan oleh aksi pemompaan kapiler (*capillary pumping*) yang dibangkitkan oleh gradien kelengkungan meniskus pada struktur pori-pori sumbu (*porous wick*) [@faghri1995heat].
+
+Berbagai struktur sumbu kapiler telah diteliti untuk aplikasi reaktor antariksa:
+- **Screen Mesh Wick:** Terdiri dari lapisan anyaman kawat halus tahan karat atau paduan refraktori (misalnya 400 mesh per inci). Memberikan radius pori efektif ($r_{eff}$) kecil (~30--40 $\mu\text{m}$) yang menghasilkan tekanan kapiler tinggi, namun memiliki permeabilitas cairan yang relatif rendah.
+- **Annular Screen Wick:** Struktur gabungan di mana celah anulus terbuka (*annular gap*) setebal 0,3--0,5 mm diletakkan di antara dinding luar dan lapisan kawat kasa halus. Cairan natrium mengalir kembali melalui celah anulus dengan hambatan gesek sangat rendah (permeabilitas efektif $K = w_{gap}^2/12 \sim 10^{-8}\text{ m}^2$), sementara lapisan anyaman kawat menghasilkan tekanan kapiler tinggi. Konfigurasi anulus ini mampu meningkatkan kapasitas angkut panas hingga 5--10 kali lipat dibanding kasa biasa, menjadikannya standar baku pada reaktor KRUSTY NASA [@briggs2018electrically].
+- **Sintered Powder Wick:** Serbuk logam yang disinter untuk konduktivitas termal tinggi dan pencegahan pendidihan dini.
+
+## II.3. Eksperimen Lapangan KRUSTY / Kilopower NASA
+
+Validasi empiris pipa kalor logam cair pada sistem reaktor antariksa mencapai tonggak bersejarah melalui proyek KRUSTY (*Kilowatt Reactor Using Stirling Technology*) yang diuji oleh NASA Glenn Research Center, Los Alamos National Laboratory (LANL), dan Nevada National Security Site [@briggs2018electrically; @mcclure2020design; @poston2020results].
+
+Eksperimen KRUSTY bertujuan menguji kelayakan sistem reaktor cepat berdaya 1--5 kWth berbasis pipa kalor natrium yang dikopel langsung dengan konverter daya mesin Stirling. Sebanyak 8 buah pipa kalor natrium beramplop Haynes-230 dengan diameter luar 0,5 inci (12,7 mm) dipasang melingkari teras silindris paduan U-7.5Mo. Setiap pipa kalor memiliki panjang aktif evaporator 0,25 m, bagian adiabatik 0,25--0,35 m, dan panjang kondensor ~0,70 m yang terhubung ke blok pemanas Stirling [@briggs2018electrically].
+
+Pengujian termal dan nuklir KRUSTY pada temperatur 745 °C hingga 830 °C mendokumentasikan fenomena:
+1. Penurunan temperatur aksial total ($\Delta T_{HP}$) antara evaporator dan kondensor berkisar antara 7,5 K hingga 25,5 K pada daya angkut termal 1,2 kW hingga 5,0 kW per pipa [@briggs2018electrically].
+2. Nilai hambatan termal total ekivalen ($R_{th} = \Delta T / Q$) tercatat sangat rendah dan relatif konstan pada kisaran 0,0051--0,0062 K/W.
+3. Aliran uap natrium beroperasi pada rezim subsonik stabil ($Ma < 0,2$) pada daya nominal, namun mendekati batas sonik selama fase *startup* dari kondisi beku.
+
+Data pengukuran eksperimen KRUSTY ini menjadi acuan baku (*gold standard*) di tingkat internasional untuk memvalidasi model-model komputasi termohidrolika pipa kalor logam cair antariksa.
+
+## II.4. Desain Konseptual Teras Indonesian Space Reactor (ISR)
+
+Kajian reaktor antariksa nasional telah diformulasikan oleh Khandaq, Harto, dan Agung [-@khandaq2020conceptual] melalui desain konseptual teras *Indonesian Space Reactor* (ISR). ISR dirancang dengan spesifikasi utama:
+- Daya termal nominal: minimal 500 kWth (hingga 1000 kWth).
+- Usia operasi: $\ge 10$ tahun pada daya penuh (dapat mencapai 28 tahun berdasarkan perhitungan *burnup*).
+- Spektrum neutron: Cepat (*fast spectrum*).
+- Bahan bakar: Uranium Nitrida (UN) dengan pengayaan 55% U-235 dan nitrogen alam, berbentuk silinder berongga (*annular fuel*).
+- Struktur teras: 61 pin bahan bakar heksagonal yang disusun dalam blok teras paduan Mo-30Re setebal 0,1 cm.
+- Pengendali reaktivitas: 6 buah *control drum* berisi racun neutron berbalut $B_4C$ (80% B-10) di dalam reflektor radial berilium oksida (BeO).
+- *Spectral Shift Absorber* (SSA): Paduan Mo-30Re dan cakram renium (Re) untuk menjamin reaktor tetap subkritis jika jatuh dan terendam air tawar atau air laut saat kecelakaan peluncuran.
+
+Pada desain Khandaq et al. [-@khandaq2020conceptual], setiap pin bahan bakar memiliki saluran pendingin individu berdiameter 0,6 cm di pusat silinder bahan bakar yang dialiri pendingin logam cair Na-78K dengan temperatur masuk 750 K dan temperatur keluar 950 K. Khandaq et al. [-@khandaq2020conceptual] secara eksplisit mencatat bahwa pendingin Na-78K memiliki titik didih ~1000 K yang membatasi peningkatan efisiensi termal, serta membutuhkan pompa sirkulasi aktif yang menimbulkan kebisingan getaran bagi wahana antariksa. Penggantian saluran pompa dengan pipa kalor natrium pasif diajukan sebagai jalur penyempurnaan utama teras ISR.
+
+## II.5. Sintesis Tinjauan Pustaka dan Kebaruan Penelitian
+
+Meskipun model simulasi pipa kalor skala penuh (*full CFD* 3D multiphase) seperti OpenFOAM atau ANSYS Fluent dapat memberikan resolusi spasial tinggi, kebutuhan komputasinya sangat masif dan tidak praktis untuk perancangan awal teras terkopel (*coupled core design*) yang melibatkan puluhan hingga ratusan pipa kalor.
+
+Model numerik tereduksi (*Reduced-Order Model*/ROM) berbasis jaringan hambatan termal dan formulasi 1D hidrodinamika menawarkan kompromi optimal: memberikan kecepatan komputasi instan dalam hitungan milidetik dengan tetap mempertahankan ketelitian fisika batas-batas operasional.
+
+Kebaruan (*novelty*) dari penelitian ini adalah:
+1. Merumuskan kode solver ROM 1D terintegrasi dalam bahasa Python yang secara komprehensif mengintegrasikan dinamika uap kompresibel, hidrodinamika cairan Darcy pada sumbu anulus, serta evaluasi simultan 5 batas termal (kapiler, sonik, entrainment, pendidihan, viskos) dalam mikrogravitasi.
+2. Memvalidasi kode secara kuantitatif terhadap dataset eksperimen lapangan NASA KRUSTY dengan target akurasi $R^2 > 0,95$ dan MAPE $< 10\%$.
+3. Menerapkan model tereduksi tersebut untuk merekayasa ulang (*retrofit/redesign*) sistem pendingin teras 61-pin Indonesian Space Reactor (ISR) 500 kWth, menyajikan kuantifikasi termal terinci mengenai faktor puncak daya radial, margin kapiler tiap cincin teras, temperatur bahan bakar UN, serta studi komparasi terhadap sistem pompa konvensional Na-78K.
+
+## II.6. Penulisan Acuan
+
+Pengelolaan acuan pustaka dalam skripsi ini dilakukan secara sistematis dengan manajer referensi berbasis BibTeX dan panduan sitasi resmi Departemen Teknik Nuklir dan Teknik Fisika UGM. Rujukan dipilih secara selektif dari jurnal internasional terindeks, prosiding ilmiah bergengsi, dan dokumen teknis lembaga antariksa dunia (NASA, IAEA, LANL).

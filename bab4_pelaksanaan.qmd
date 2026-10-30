@@ -1,0 +1,107 @@
+# BAB IV PELAKSANAAN PENELITIAN
+
+## IV.1. Alat dan Bahan Penelitian
+
+Penelitian ini merupakan penelitian komputasional dan rekayasa simulasi termohidrolika numerik. Alat dan bahan yang digunakan dijabarkan sebagai berikut:
+
+### 1. Spesifikasi Perangkat Lunak (*Software*)
+- **Bahasa Pemrograman:** Python versi 3.10 dengan pustaka standar (*math, dataclasses, typing, json, csv*) yang dirancang mandiri tanpa dependensi eksternal untuk menjamin portabilitas dan kecepatan eksekusi tinggi.
+- **Kerangka Analisis Dokumen:** Quarto CLI dan Pandoc untuk kompilasi laporan ilmiah berskala buku/skripsi terstandar UGM.
+- **Antarmuka Visualisasi Interaktif:** Kerangka kerja web modern berbasis TypeScript, Angular v21, Tailwind CSS, dan MathJax untuk eksplorasi simulasi waktu-nyata (*real-time parameter sweep*).
+
+### 2. Bahan Penelitian (Data Masukan & Benchmark)
+- **Data Eksperimen Uji Lapangan KRUSTY NASA:** Dataset resmi pengukuran temperatur, daya kalor, dan hambatan termal dari laporan teknis NASA/TM-2018-219702 [@briggs2018electrically] dan publikasi Kilopower [@mcclure2020design].
+- **Data Desain Teras Indonesian Space Reactor (ISR):** Parameter dimensi teras, geometri 61 pin bahan bakar heksagonal, fraksi volume material, dan sifat neutronik dari Khandaq et al. [-@khandaq2020conceptual].
+- **Basis Data Sifat Termofisika:** Sifat termodinamika dan transport logam cair natrium dan paduan Mo-30Re dari buku panduan Argonne National Laboratory (ANL-RE-95/2) [@fink1995thermodynamic] dan Haynes International.
+
+## IV.2. Tata Laksana Penelitian
+
+Tata laksana penelitian dilaksanakan secara bertahap dan sistematis mengikuti diagram alir algoritma simulasi pada @fig-4-1:
+
+```
++-----------------------------------------------------------+
+|              Mulai: Inisialisasi Parameter               |
+|      Geometri (Le, La, Lc, ro, ri, rv, wick), Fluida      |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|          Evaluasi Sifat Termofisika Fluida Kerja          |
+|    Psat(T), rhol(T), rhov(T), hfg(T), sigma(T), mul(T)    |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|       Hitung Jaringan Hambatan Termal Ekivalen (R_th)      |
+|           R_wall,e + R_wick,e + R_v + R_wick,c + R_wall,c |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|     Evaluasi 5 Batas Operasional Perpindahan Panas       |
+|          Q_cap, Q_sonic, Q_ent, Q_boil, Q_visc            |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|             Diskritisasi 1D Aksial (N = 50 node)          |
+|         Profil T(z), Pv(z), Pl(z), v_vapor(z), Ma(z)      |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|      Tahap 1: Validasi Lapangan Eksperimen KRUSTY NASA    |
+|             Hitung Metrik RMSE, MAPE, dan R^2             |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|          Tahap 2: Aplikasi Teras 61-Pin ISR 500 kWth      |
+|    Petakan Faktor Puncak Daya Radial (Ring 0 s.d. 4)      |
+|   Evaluasi Margin Kapiler, Temperatur UN, dan Redundansi  |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|     Tahap 3: Studi Komparasi vs Sistem Pompa Na-78K       |
+|    Analisis Massa, Daya Parasitik, Getaran, Keselamatan   |
++-----------------------------------------------------------+
+                             |
+                             v
++-----------------------------------------------------------+
+|                          Selesai                          |
++-----------------------------------------------------------+
+```
+: Diagram alir tata laksana pemodelan numerik tereduksi dan pengujian teras ISR. {#fig-4-1}
+
+## IV.3. Rencana Analisis Hasil Penelitian
+
+Hasil simulasi numerik diolah dan dianalisis melalui prosedur berikut:
+
+### 1. Pengujian Validitas Statistik Model Numerik
+Kesesuaian prediksi model tereduksi terhadap data eksperimen KRUSTY NASA dievaluasi melalui tiga indikator statistik utama:
+- **Root Mean Square Error (RMSE):**
+  $$
+  \text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^N \left( \Delta T_{sim,i} - \Delta T_{exp,i} \right)^2}
+  $$ {#eq-4-1}
+- **Mean Absolute Percentage Error (MAPE):**
+  $$
+  \text{MAPE} = \frac{100\%}{N} \sum_{i=1}^N \left| \frac{\Delta T_{sim,i} - \Delta T_{exp,i}}{\Delta T_{exp,i}} \right|
+  $$ {#eq-4-2}
+- **Koefisien Determinasi ($R^2$):**
+  $$
+  R^2 = 1 - \frac{\sum_{i=1}^N \left( \Delta T_{exp,i} - \Delta T_{sim,i} \right)^2}{\sum_{i=1}^N \left( \Delta T_{exp,i} - \overline{\Delta T}_{exp} \right)^2}
+  $$ {#eq-4-3}
+
+### 2. Analisis Karakteristik Termohidrolika Teras ISR
+- Evaluasi selubung batas operasi (*operating limits envelope*) $Q_{max}$ terhadap temperatur jenuh teras (650--1200 K).
+- Pemetaan daya termal pada 61 pin teras yang dikelompokkan ke dalam 5 cincin konsentris heksagonal sesuai faktor puncak radial:
+  - Cincin 0 (Pusat): 1 pin, $f_r = 1,28$ ($Q = 10,49\text{ kWt}$)
+  - Cincin 1 (Dalam): 6 pin, $f_r = 1,20$ ($Q = 9,84\text{ kWt}$)
+  - Cincin 2 (Tengah-Dalam): 12 pin, $f_r = 1,08$ ($Q = 8,85\text{ kWt}$)
+  - Cincin 3 (Tengah-Luar): 18 pin, $f_r = 0,94$ ($Q = 7,70\text{ kWt}$)
+  - Cincin 4 (Perifer Reflektor): 24 pin, $f_r = 0,81$ ($Q = 6,64\text{ kWt}$)
+- Perhitungan profil temperatur radial bahan bakar UN, penurunan temperatur pipa kalor, dan margin kapiler minimum ($M_{cap}$).
+
+### 3. Analisis Komparasi Tekno-Ekonomis dan Keselamatan
+Membandingkan sistem pendingin pasif pipa kalor natrium terhadap sistem pompa elektromagnetik Na-78K awal dari Khandaq et al. [-@khandaq2020conceptual] dalam parameter daya parasitik, bobot total, tingkat getaran, potensi kegagalan titik tunggal, serta margin terhadap pendidihan (*boiling safety margin*).

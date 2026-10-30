@@ -1,0 +1,45 @@
+# LAMPIRAN B TABEL PROPERTI TERMOFISIKA MATERIAL DAN DATA VALIDASI {.unnumbered}
+
+## B.1. Tabel Sifat Termofisika Natrium Cair dan Uap
+
+Berikut adalah data sifat termofisika natrium murni pada rentang temperatur 600 K hingga 1300 K yang dihitung berdasarkan korelasi Argonne National Laboratory [@fink1995thermodynamic]:
+
+| Temperatur ($T$, K) | Tekanan Uap ($P_{sat}$, kPa) | Densitas Cair ($\rho_l$, $\text{kg/m}^3$) | Densitas Uap ($\rho_v$, $\text{kg/m}^3$) | Panas Laten ($h_{fg}$, kJ/kg) | Tegangan Permukaan ($\sigma$, N/m) | Viskositas Cair ($\mu_l$, $\text{mPa}\cdot\text{s}$) | Konduktivitas Cair ($k_l$, W/m·K) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **600** | 0,004 | 872,7 | 0,0000 | 4214,0 | 0,1805 | 0,3812 | 62,36 |
+| **650** | 0,023 | 861,3 | 0,0001 | 4168,5 | 0,1755 | 0,3321 | 59,96 |
+| **700** | 0,098 | 849,8 | 0,0004 | 4123,0 | 0,1705 | 0,2948 | 57,75 |
+| **750** | 0,332 | 838,2 | 0,0012 | 4077,5 | 0,1655 | 0,2657 | 55,73 |
+| **800** | 0,961 | 826,5 | 0,0033 | 4032,0 | 0,1605 | 0,2425 | 53,89 |
+| **850** | 2,442 | 814,6 | 0,0079 | 3986,5 | 0,1555 | 0,2237 | 52,24 |
+| **900** | 5,571 | 802,7 | 0,0171 | 3941,0 | 0,1505 | 0,2081 | 50,77 |
+| **950** | 11,623 | 790,6 | 0,0338 | 3895,5 | 0,1455 | 0,1951 | 49,49 |
+| **1000** | 22,468 | 778,4 | 0,0621 | 3850,0 | 0,1405 | 0,1841 | 48,39 |
+| **1050** | 40,653 | 766,0 | 0,1071 | 3804,5 | 0,1355 | 0,1747 | 47,48 |
+| **1100** | 69,451 | 753,6 | 0,1746 | 3759,0 | 0,1305 | 0,1666 | 46,75 |
+| **1150** | 112,854 | 740,9 | 0,2713 | 3713,5 | 0,1255 | 0,1595 | 46,21 |
+| **1200** | 175,492 | 728,1 | 0,4046 | 3668,0 | 0,1205 | 0,1533 | 45,86 |
+| **1250** | 262,607 | 715,2 | 0,5809 | 3622,5 | 0,1155 | 0,1479 | 45,69 |
+| **1300** | 379,985 | 702,0 | 0,8082 | 3577,0 | 0,1105 | 0,1431 | 45,71 |
+: Sifat termofisika fasa cair dan uap natrium murni. {#tbl-B-1}
+
+## B.2. Data Teknis Uji Lapangan Reaktor KRUSTY NASA
+
+Rincian spesifikasi geometri dan material pipa kalor KRUSTY [@briggs2018electrically]:
+
+| Parameter Pipa Kalor KRUSTY | Nilai Spesifikasi |
+| :--- | :--- |
+| **Fluida Kerja** | Natrium kemurnian tinggi (purity > 99,99%) |
+| **Massa Isian Natrium** | $35,0 \pm 1,0\text{ gram}$ per pipa |
+| **Material Amplop / Dinding** | Paduan supernikel Haynes-230 |
+| **Diameter Luar Tabung ($d_{outer}$)** | $0,500\text{ inci}$ ($12,70\text{ mm}$) |
+| **Tebal Dinding Tabung ($t_{wall}$)** | $0,033\text{ inci}$ ($0,830\text{ mm}$) |
+| **Celah Cairan Anulus ($w_{gap}$)** | $0,015\text{ inci}$ ($0,380\text{ mm}$) |
+| **Struktur Sumbu (*Wick*)** | Anyaman kasa kawat baja 316L (400 mesh per inci) |
+| **Diameter Kawat Kasa** | $0,0010\text{ inci}$ ($0,025\text{ mm}$) |
+| **Panas Laten Penguapan pada 800 °C** | $3,78 \times 10^6\text{ J/kg}$ |
+| **Panjang Evaporator ($L_e$)** | $0,25\text{ m}$ (terbenam dalam teras U-Mo) |
+| **Panjang Adiabatik ($L_a$)** | $0,25\text{ m}$ (menembus perisai radiasi) |
+| **Panjang Kondensor ($L_c$)** | $0,72\text{ m}$ (terkopel ke flensa pemanas Stirling) |
+| **Panjang Total Pipa** | $1,22\text{ m}$ |
+: Parameter teknis pipa kalor natrium reaktor KRUSTY NASA [@briggs2018electrically]. {#tbl-B-2}

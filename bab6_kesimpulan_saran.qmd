@@ -1,0 +1,22 @@
+# BAB VI KESIMPULAN DAN SARAN
+
+## VI.1. Kesimpulan
+
+Berdasarkan hasil pemodelan, validasi eksperimen, dan analisis termohidrolika penerapan sistem pipa kalor dua fasa pada reaktor antariksa, ditarik kesimpulan sebagai berikut:
+
+1. Telah berhasil dikembangkan simulator numerik model tereduksi (*Reduced-Order Model*/ROM) dalam bahasa Python untuk menganalisis aliran dua fasa pipa kalor logam cair dalam kondisi mikrogravitasi. Model mengintegrasikan jaringan hambatan termal ekivalen radial-aksial, hidrodinamika uap kompresibel, aliran cairan Darcy pada struktur sumbu anulus, serta evaluasi simultan lima batas termal (kapiler, sonik, entrainment, pendidihan, dan viskos).
+2. Validasi model numerik tereduksi terhadap data uji lapangan reaktor KRUSTY NASA (1200--4950 W pada temperatur 745--830 °C) membuktikan ketelitian tinggi dengan nilai *Root Mean Square Error* (RMSE) sebesar **0,779 K**, *Mean Absolute Percentage Error* (MAPE) sebesar **6,03%**, dan koefisien determinasi **$R^2 = 0,9853$**. Pada daya operasi tinggi (4150 W dan 4950 W), galat prediksi model bahkan berada di bawah **1,0%**, memvalidasi akurasi formulasi termohidrolika yang dibangun.
+3. Penerapan 61 unit pipa kalor natrium mandiri beramplop paduan Mo-30Re ($D_o = 15\text{ mm}$, $L_e = 0,25\text{ m}$, $L_c = 0,45\text{ m}$) pada teras 500 kWth Indonesian Space Reactor (ISR) terbukti layak secara termohidrolika. Pada temperatur operasi 980 K, pin pusat dengan faktor puncak daya radial tertinggi ($f_r = 1,28$, daya 10,49 kWt) memiliki margin keselamatan kapiler sebesar **0,447** (44,7%), dengan temperatur puncak bahan bakar uranium nitrida (UN) sebesar **1079,6 K** yang berada jauh di bawah ambang batas pelelehan UN (~3100 K).
+4. Penggantian sistem pendingin aktif sirkulasi paksa Na-78K dengan sistem pasif pipa kalor natrium memberikan lompatan keunggulan teknologi bagi ISR:
+   - **Mengeliminasi daya parasitik listrik sebesar 18,5 kWe**, sehingga daya listrik netto dapat dimanfaatkan penuh untuk instrumen muatan wahana antariksa,
+   - **Mereduksi massa sistem pendingin sebesar 14,3 kg**,
+   - **Menghilangkan seluruh getaran mekanik (*microphonics*)** yang berpotensi mendistorsi sensor navigasi dan teleskop optik antariksa,
+   - **Mewujudkan redundansi keselamatan intrinsik**, di mana kegagalan 1--2 pipa kalor tidak memicu kecelakaan teras, serta menjamin pembuangan panas peluruhan (*decay heat removal*) secara pasif dan berkelanjutan tanpa pasokan daya cadangan.
+
+## VI.2. Saran
+
+Beberapa saran yang diusulkan untuk pengembangan dan penelitian lanjutan adalah:
+1. Melakukan analisis kopel neutronik-termohidrolika (*coupled neutronic-thermal hydraulic analysis*) secara multi-dimensi menggunakan perangkat lunak MCNP/Serpent yang dikopel langsung dengan solver pipa kalor untuk mengamati umpan balik reaktivitas (*Doppler and thermal expansion reactivity feedback*) secara lokal pada tiap pin.
+2. Mempelajari dinamika transien *startup* pipa kalor dari kondisi natrium beku (*frozen startup*) di orbit antariksa dengan pemanasan bertahap dari panas peluruhan atau reaktivitas rendah guna mencegah timbulnya titik panas (*hotspot*) lokal sebelum fasa uap terbentuk sempurna.
+3. Mengkaji mekanisme manufaktur sambungan pengelasan (*diffusion bonding*) antara amplop pipa kalor Mo-30Re dengan matriks blok teras heksagonal untuk meminimalkan hambatan termal kontak antarmuka.
+4. Melakukan pengujian eksperimental purwarupa pipa kalor Mo-30Re skala laboratorium di fasilitas Departemen Teknik Nuklir dan Teknik Fisika UGM guna mengonfirmasi batas fabrikasi lokal dan kesesuaian material di Indonesia.

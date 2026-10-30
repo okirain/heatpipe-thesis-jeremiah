@@ -1,0 +1,18 @@
+# DAFTAR PUSTAKA {.unnumbered}
+
+::: {#refs}
+:::
+
+1. M. H. Briggs, M. A. Gibson, and J. L. Sanzi, "Electrically Heated Testing of the Kilowatt Reactor Using Stirling Technology (KRUSTY) Experiment Using a Depleted Uranium Core," National Aeronautics and Space Administration (NASA), Cleveland, OH, Tech. Rep. NASA/TM-2018-219702, 2018.
+2. S. W. Chi, *Heat Pipe Theory and Practice: A Sourcebook*. Washington, DC: Hemisphere Publishing Corporation, 1976.
+3. P. D. Dunn and D. A. Reay, *Heat Pipes*, 4th ed. Oxford: Pergamon Press, 1994.
+4. M. S. El-Genk, "Deployment history and design considerations for space reactor power systems," *Acta Astronautica*, vol. 64, no. 9-10, pp. 833–849, 2009.
+5. M. S. El-Genk and J.-M. P. Tournier, "SAIR - Scalable AMTEC integrated reactor space power system," *Progress in Nuclear Energy*, vol. 45, no. 1, pp. 25–69, 2004.
+6. A. Faghri, *Heat Pipe Science and Technology*. Washington, DC: Taylor & Francis, 1995.
+7. J. K. Fink and L. Leibowitz, "Thermodynamic and transport properties of sodium liquid and vapor," Argonne National Laboratory, Argonne, IL, Tech. Rep. ANL/RE-95/2, 1995.
+8. M. F. Khandaq, A. W. Harto, and A. Agung, "Conceptual core design study for Indonesian Space Reactor (ISR)," *Progress in Nuclear Energy*, vol. 118, p. 103109, 2020.
+9. P. R. McClure, D. I. Poston, V. Dasari, and M. A. Gibson, "Design of the Kilopower reactor using Stirling technology (KRUSTY)," *Nuclear Technology*, vol. 206, no. sup1, pp. S31–S42, 2020.
+10. L. de H. Mencarini and J. C. King, "Fuel geometry options for a moderated low-enriched uranium kilowatt-class space nuclear reactor," *Nuclear Engineering and Design*, vol. 340, pp. 122–132, 2018.
+11. D. I. Poston, "The Heatpipe-Operated Mars Exploration Reactor (HOMER)," Los Alamos National Laboratory, Los Alamos, NM, Tech. Rep. LA-UR-00-5269, 2000.
+12. D. I. Poston, P. R. McClure, R. G. Sanchez, and M. H. Briggs, "Results of the KRUSTY nuclear ground test," *Nuclear Technology*, vol. 206, no. sup1, pp. S89–S117, 2020.
+13. Y. Yuan, J. Shan, B. Zhang, J. Gou, Z. Bo, T. Lu, L. Ge, and Z. Yang, "Accident analysis of heat pipe cooled and AMTEC conversion space reactor system," *Annals of Nuclear Energy*, vol. 94, pp. 706–715, 2016.

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Space Reactor Heat Pipe Two-Phase Flow Simulator & Quarto Thesis Suite</title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Reduced-order two-phase flow numerical simulator for space reactor microgravity heat pipes, validated against NASA KRUSTY field data, and applied to the Indonesian Space Reactor (ISR) 61-pin core as a passive prototype replacing Na-78K pumps. Includes full Quarto thesis conforming to UGM DTNTF standards for Muhammad Naufal Tamimi (20/456315/TK/50445)."/>
+    <meta property="og:title" content="Space Reactor Heat Pipe Two-Phase Flow Simulator &amp; Quarto Thesis Suite"/>
+    <meta property="og:description" content="Reduced-order two-phase flow numerical simulator for space reactor microgravity heat pipes, validated against NASA KRUSTY field data, and applied to the Indonesian Space Reactor (ISR) 61-pin core as a passive prototype replacing Na-78K pumps. Includes full Quarto thesis conforming to UGM DTNTF standards for Muhammad Naufal Tamimi (20/456315/TK/50445)."/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><script src="/_aistudio-iframe.js?v=1f94f900"></script></head>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-500/30 selection:text-amber-200" ngcm="">
+    <app-root></app-root>
+  <script src="main.js" type="module"></script></body>
+</html>

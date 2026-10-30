@@ -1,0 +1,222 @@
+# LAMPIRAN A LISTING PROGRAM PYTHON MODEL TEREDUKSI (ROM) PIPA KALOR {.unnumbered}
+
+Berikut adalah kode sumber lengkap simulator model tereduksi (*Reduced-Order Model*) aliran dua fasa pipa kalor natrium antariksa dalam bahasa pemrograman Python 3:
+
+```python
+"""
+Reduced-Order Numerical Model (ROM) for High-Temperature Alkali Metal Heat Pipes
+Designed for Space Reactor Applications (Microgravity, High Heat Flux, Liquid Metal Working Fluid)
+Author: Muhammad Naufal Tamimi (20/456315/TK/50445)
+Departemen Teknik Nuklir dan Teknik Fisika, Universitas Gadjah Mada (UGM)
+"""
+
+import math
+from dataclasses import dataclass
+from typing import Dict, List, Any
+
+R_UNIVERSAL = 8.314462618  # J / mol.K
+
+@dataclass
+class LiquidMetalProperties:
+    temperature: float        # K
+    p_sat: float              # Pa
+    rho_l: float              # kg/m3
+    rho_v: float              # kg/m3
+    h_fg: float               # J/kg
+    sigma: float              # N/m
+    mu_l: float               # Pa.s
+    mu_v: float               # Pa.s
+    k_l: float                # W/m.K
+    k_v: float                # W/m.K
+    c_p_l: float              # J/kg.K
+    gamma: float              # Cp/Cv
+
+def get_sodium_properties(T: float) -> LiquidMetalProperties:
+    T = max(500.0, min(1400.0, float(T)))
+    M_Na = 0.0229898
+    R_g = R_UNIVERSAL / M_Na
+    log_p_mpa = 11.9463 - (12633.73 / T) - 0.5 * math.log(T)
+    p_sat = math.exp(log_p_mpa) * 1.0e6
+    rho_l = 1011.8 - 0.22054 * T - 1.9226e-5 * (T**2) + 5.637e-9 * (T**3)
+    rho_v = p_sat / (R_g * T)
+    h_fg = (4.76e6 - 9.1e2 * T)
+    sigma = max(0.01, 0.2405 - 1.0e-4 * T)
+    mu_l = math.exp(-6.4406 - 0.3958 * math.log(T) + (556.835 / T))
+    mu_v = 1.6e-7 * (T**0.7)
+    k_l = 93.0 - 0.0581 * T + 1.173e-5 * (T**2)
+    k_v = 0.025 + 2.5e-5 * T
+    c_p_l = 1630.14 - 0.833 * T + 4.628e-4 * (T**2)
+    gamma = 1.33
+    return LiquidMetalProperties(T, p_sat, rho_l, rho_v, h_fg, sigma, mu_l, mu_v, k_l, k_v, c_p_l, gamma)
+
+@dataclass
+class HeatPipeGeometry:
+    L_e: float = 0.25
+    L_a: float = 0.30
+    L_c: float = 0.45
+    d_outer: float = 0.0150
+    t_wall: float = 0.0008
+    t_wick: float = 0.00045
+    wick_type: str = "annular_screen"
+    annulus_gap: float = 0.00035
+    screen_mesh_number: float = 15748.0
+    porosity: float = 0.68
+    effective_pore_radius: float = 3.5e-5
+    permeability: float = 1.02e-8
+    envelope_material: str = "Mo-30Re"
+    k_wall: float = 42.0
+    g_accel: float = 0.0
+    tilt_angle_deg: float = 0.0
+
+    @property
+    def L_total(self) -> float:
+        return self.L_e + self.L_a + self.L_c
+
+    @property
+    def L_eff(self) -> float:
+        return 0.5 * self.L_e + self.L_a + 0.5 * self.L_c
+
+    @property
+    def r_outer(self) -> float:
+        return self.d_outer / 2.0
+
+    @property
+    def r_inner(self) -> float:
+        return self.r_outer - self.t_wall
+
+    @property
+    def r_vapor(self) -> float:
+        return self.r_inner - self.t_wick
+
+    @property
+    def A_vapor(self) -> float:
+        return math.pi * (self.r_vapor**2)
+
+    @property
+    def A_wick(self) -> float:
+        return math.pi * ((self.r_inner**2) - (self.r_vapor**2))
+
+    @property
+    def A_annulus(self) -> float:
+        if self.wick_type == "annular_screen":
+            r_gap_in = self.r_inner - self.annulus_gap
+            return math.pi * ((self.r_inner**2) - (r_gap_in**2))
+        return self.A_wick
+
+class ReducedOrderHeatPipeSimulator:
+    def __init__(self, geometry: HeatPipeGeometry, fluid: str = "Sodium"):
+        self.geo = geometry
+        self.fluid = fluid
+
+    def get_properties(self, T: float) -> LiquidMetalProperties:
+        return get_sodium_properties(T)
+
+    def calculate_operating_limits(self, T_sat: float) -> Dict[str, float]:
+        prop = self.get_properties(T_sat)
+        geo = self.geo
+        L_eff = geo.L_eff
+        A_v = geo.A_vapor
+        r_v = geo.r_vapor
+        r_eff = geo.effective_pore_radius
+
+        if geo.wick_type == "annular_screen":
+            A_flow_l = geo.A_annulus
+            K_w = (geo.annulus_gap**2) / 12.0
+        else:
+            A_flow_l = geo.A_wick
+            K_w = geo.permeability
+
+        delta_P_c_max = (2.0 * prop.sigma) / r_eff
+        g_comp = geo.g_accel * math.sin(math.radians(geo.tilt_angle_deg))
+        delta_P_g = prop.rho_l * g_comp * geo.L_total
+        F_l = prop.mu_l / (prop.rho_l * A_flow_l * K_w * prop.h_fg)
+        F_v = (8.0 * prop.mu_v) / (math.pi * prop.rho_v * (r_v**4) * prop.h_fg)
+
+        available_c = delta_P_c_max - delta_P_g
+        Q_cap = available_c / ((F_l + F_v) * L_eff) if available_c > 0 else 0.0
+
+        M_gas = 0.0229898
+        R_g = R_UNIVERSAL / M_gas
+        sound_speed = math.sqrt(prop.gamma * R_g * T_sat)
+        choked_flux = prop.rho_v * sound_speed * math.sqrt(1.0 / (2.0 * (prop.gamma + 1.0)))
+        Q_sonic = A_v * prop.h_fg * choked_flux
+
+        r_hs = 0.5 * geo.effective_pore_radius
+        Q_ent = A_v * prop.h_fg * math.sqrt((prop.sigma * prop.rho_v) / (2.0 * r_hs))
+
+        k_eff_wick = prop.k_l
+        r_nuc = 1.0e-6
+        delta_T_crit = (2.0 * prop.sigma * T_sat) / (prop.h_fg * prop.rho_v * r_nuc)
+        log_ratio = math.log(geo.r_inner / geo.r_vapor)
+        Q_boil = (2.0 * math.pi * geo.L_e * k_eff_wick * delta_T_crit) / max(1e-4, log_ratio)
+
+        Q_visc = (A_v * (r_v**2) * prop.h_fg * prop.rho_v * prop.p_sat) / (16.0 * prop.mu_v * L_eff)
+        Q_max = min([Q_cap, Q_sonic, Q_ent, Q_boil, Q_visc])
+
+        return {
+            "Q_max": Q_max, "Q_capillary": Q_cap, "Q_sonic": Q_sonic,
+            "Q_entrainment": Q_ent, "Q_boiling": Q_boil, "Q_viscous": Q_visc,
+            "delta_P_c_max": delta_P_c_max, "delta_P_g": delta_P_g
+        }
+
+    def solve_thermal_network(self, Q_thermal: float, T_evap_sink: float) -> Dict[str, Any]:
+        prop = self.get_properties(T_evap_sink)
+        geo = self.geo
+        k_wick = prop.k_l
+
+        R_wall_e = math.log(geo.r_outer / geo.r_inner) / (2.0 * math.pi * geo.k_wall * geo.L_e)
+        R_wick_e = math.log(geo.r_inner / geo.r_vapor) / (2.0 * math.pi * k_wick * geo.L_e)
+
+        F_v = (8.0 * prop.mu_v) / (math.pi * prop.rho_v * (geo.r_vapor**4) * prop.h_fg)
+        delta_P_v = F_v * geo.L_eff * Q_thermal
+        R_vapor = max(1e-6, (prop.temperature * delta_P_v) / (prop.rho_v * (prop.h_fg**2) * max(1.0, Q_thermal)))
+
+        R_wick_c = math.log(geo.r_inner / geo.r_vapor) / (2.0 * math.pi * k_wick * geo.L_c)
+        R_wall_c = math.log(geo.r_outer / geo.r_inner) / (2.0 * math.pi * geo.k_wall * geo.L_c)
+        R_total = R_wall_e + R_wick_e + R_vapor + R_wick_c + R_wall_c
+
+        T_outer_e = T_evap_sink
+        T_inner_e = T_outer_e - Q_thermal * R_wall_e
+        T_vapor_e = T_inner_e - Q_thermal * R_wick_e
+        T_vapor_c = T_vapor_e - Q_thermal * R_vapor
+        T_inner_c = T_vapor_c - Q_thermal * R_wick_c
+        T_outer_c = T_inner_c - Q_thermal * R_wall_c
+
+        if geo.wick_type == "annular_screen":
+            A_flow_l = geo.A_annulus
+            K_w = (geo.annulus_gap**2) / 12.0
+        else:
+            A_flow_l = geo.A_wick
+            K_w = geo.permeability
+
+        F_l = prop.mu_l / (prop.rho_l * A_flow_l * K_w * prop.h_fg)
+        delta_P_l = F_l * geo.L_eff * Q_thermal
+        delta_P_tot = delta_P_v + delta_P_l
+        delta_P_cap_max = (2.0 * prop.sigma) / geo.effective_pore_radius
+        capillary_margin = 1.0 - (delta_P_tot / max(1.0, delta_P_cap_max))
+
+        mass_flow = Q_thermal / prop.h_fg
+        v_vap = mass_flow / (prop.rho_v * geo.A_vapor)
+        R_g = R_UNIVERSAL / 0.0229898
+        sound_speed = math.sqrt(prop.gamma * R_g * T_vapor_e)
+        mach = v_vap / sound_speed
+
+        return {
+            "Q_thermal_W": Q_thermal, "R_total_KW": R_total,
+            "temperatures_K": {
+                "T_outer_evap": T_outer_e, "T_inner_evap": T_inner_e,
+                "T_vapor_evap": T_vapor_e, "T_vapor_cond": T_vapor_c,
+                "T_inner_cond": T_inner_c, "T_outer_cond": T_outer_c,
+                "delta_T_total": T_outer_e - T_outer_c
+            },
+            "pressure_drops_Pa": {
+                "delta_P_vapor": delta_P_v, "delta_P_liquid": delta_P_l,
+                "delta_P_total": delta_P_tot, "delta_P_cap_max": delta_P_cap_max,
+                "capillary_margin": capillary_margin
+            },
+            "flow_dynamics": {
+                "mass_flow_rate_kg_s": mass_flow, "v_vapor_max_m_s": v_vap,
+                "sound_speed_m_s": sound_speed, "mach_number": mach
+            }
+        }
+```

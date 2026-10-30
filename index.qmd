@@ -1,0 +1,247 @@
+# HALAMAN JUDUL {.unnumbered}
+
+::: {style="text-align: center; margin-top: 2cm;"}
+## MODEL TEREDUKSI DUA FASA PIPA KALOR NATRIUM PADA REAKTOR NUKLIR INDONESIAN SPACE REACTOR {.unnumbered}
+
+\vspace{1.5cm}
+
+### SKRIPSI {.unnumbered}
+
+\vspace{1cm}
+
+untuk memenuhi sebagian persyaratan  
+untuk memperoleh derajat Sarjana  
+Program Studi Teknik Nuklir  
+
+\vspace{2cm}
+
+Diajukan oleh:
+
+**MUHAMMAD NAUFAL TAMIMI**  
+**20/456315/TK/50445**  
+
+\vspace{2.5cm}
+
+Kepada  
+**DEPARTEMEN TEKNIK NUKLIR DAN TEKNIK FISIKA**  
+**FAKULTAS TEKNIK**  
+**UNIVERSITAS GADJAH MADA**  
+**YOGYAKARTA**  
+**2025**
+:::
+
+\newpage
+
+# PERNYATAAN BEBAS PLAGIASI {.unnumbered}
+
+Saya yang bertanda tangan di bawah ini:
+
+| Parameter | Keterangan |
+| :--- | :--- |
+| **Nama** | Muhammad Naufal Tamimi |
+| **NIM** | 20/456315/TK/50445 |
+| **Tahun terdaftar** | 2020 |
+| **Program Studi** | Teknik Nuklir |
+| **Fakultas** | Teknik |
+
+menyatakan bahwa dokumen ilmiah skripsi ini tidak terdapat bagian dari karya ilmiah lain yang telah diajukan untuk memperoleh gelar akademik di suatu lembaga Pendidikan Tinggi, dan juga tidak terdapat karya atau pendapat yang pernah ditulis atau diterbitkan oleh orang/lembaga lain, kecuali yang secara tertulis disitasi dalam dokumen ini dan disebutkan sumbernya secara lengkap dalam daftar pustaka.
+
+Dengan demikian saya menyatakan bahwa dokumen ilmiah ini bebas dari unsur-unsur plagiasi dan apabila dokumen ilmiah Skripsi ini di kemudian hari terbukti merupakan plagiasi dari hasil karya penulis lain dan/atau dengan sengaja mengajukan karya atau pendapat yang merupakan hasil karya penulis lain, maka penulis bersedia menerima sanksi akademik dan/atau sanksi hukum yang berlaku.
+
+\vspace{1.5cm}
+
+::: {style="text-align: right;"}
+Yogyakarta, 2025  
+
+\vspace{1cm}
+*(Materai e-Meterai Rp 10.000)*  
+\vspace{1cm}
+
+**Muhammad Naufal Tamimi**  
+NIM. 20/456315/TK/50445  
+:::
+
+\newpage
+
+# HALAMAN PENGESAHAN {.unnumbered}
+
+::: {style="text-align: center;"}
+### SKRIPSI {.unnumbered}
+## MODEL TEREDUKSI DUA FASA PIPA KALOR NATRIUM PADA REAKTOR NUKLIR INDONESIAN SPACE REACTOR {.unnumbered}
+:::
+
+\vspace{1cm}
+
+| | |
+| :--- | :--- |
+| **Nama Mahasiswa** | Muhammad Naufal Tamimi |
+| **Nomor Mahasiswa** | 20/456315/TK/50445 |
+| **Pembimbing Utama** | Dr. Ir. Alexander Agung, S.T., M.Sc., IPU |
+| **Pembimbing Pendamping** | Ir. Andang Widi Harto, M.T., Ph.D. |
+
+\vspace{1cm}
+
+Skripsi ini telah dipertahankan di depan Tim Penguji pada Sidang Ujian Skripsi.
+
+\vspace{1.5cm}
+
+::: {style="text-align: center;"}
+Mengetahui,  
+Ketua Departemen Teknik Nuklir dan Teknik Fisika  
+Fakultas Teknik Universitas Gadjah Mada  
+
+\vspace{2cm}
+
+**Dr. Ir. Alexander Agung, S.T., M.Sc., IPU**  
+NIP. 19720916 199803 1002  
+:::
+
+\newpage
+
+# KATA PENGANTAR {.unnumbered}
+
+Puji syukur penulis panjatkan ke hadirat Tuhan Yang Maha Esa atas segala rahmat dan karunia-Nya, sehingga skripsi yang berjudul **"Model Tereduksi Dua Fasa Pipa Kalor Natrium pada Reaktor Nuklir Indonesian Space Reactor"** dapat diselesaikan dengan baik dan lancar. Skripsi ini disusun sebagai salah satu syarat untuk memperoleh derajat Sarjana Teknik pada Program Studi Teknik Nuklir, Departemen Teknik Nuklir dan Teknik Fisika, Fakultas Teknik, Universitas Gadjah Mada.
+
+Penulis menyampaikan rasa hormat dan terima kasih yang mendalam kepada:
+1. **Dr. Ir. Alexander Agung, S.T., M.Sc., IPU**, selaku Ketua Departemen Teknik Nuklir dan Teknik Fisika FT UGM sekaligus Dosen Pembimbing Utama atas arahan ilmiah, wawasan rekayasa reaktor mutakhir, dan bimbingan yang tak ternilai selama penelitian.
+2. **Ir. Andang Widi Harto, M.T., Ph.D.**, selaku Dosen Pembimbing Pendamping atas diskusi berharga mengenai termohidrolika dan desain konseptual teras reaktor antariksa.
+3. Seluruh dosen dan staf pengajar di Departemen Teknik Nuklir dan Teknik Fisika FT UGM yang telah membekali ilmu pengetahuan selama masa perkuliahan.
+4. Orang tua dan keluarga tercinta yang senantiasa melimpahkan doa, dukungan moril, dan kasih sayang tanpa henti.
+5. Rekan-rekan mahasiswa Teknik Nuklir angkatan 2020 atas persahabatan dan kebersamaan intelektual.
+
+Penulis menyadari bahwa skripsi ini masih memiliki kekurangan. Kritik dan saran yang membangun sangat penulis harapkan demi penyempurnaan karya ilmiah di masa depan.
+
+\vspace{1cm}
+::: {style="text-align: right;"}
+Yogyakarta, 2025  
+Penulis,  
+
+**Muhammad Naufal Tamimi**
+:::
+
+\newpage
+
+# DAFTAR LAMBANG DAN SINGKATAN {.unnumbered}
+
+### Lambang Romawi {.unnumbered}
+
+| Lambang | Kuantitas | Satuan |
+| :--- | :--- | :--- |
+| $A_v$ | Luas penampang saluran uap (*vapor core area*) | $\text{m}^2$ |
+| $A_w$ | Luas penampang sumbu kapiler (*wick area*) | $\text{m}^2$ |
+| $c_s$ | Kecepatan suara pada uap natrium | $\text{m/s}$ |
+| $d_{outer}$ | Diameter luar pipa kalor | $\text{m}$ |
+| $f_r$ | Faktor puncak daya radial (*radial peaking factor*) | $-$ |
+| $g$ | Percepatan gravitasi | $\text{m/s}^2$ |
+| $h_{fg}$ | Panas laten penguapan fluida kerja | $\text{J/kg}$ |
+| $K$ | Permeabilitas hidrolik sumbu kapiler | $\text{m}^2$ |
+| $k_l$ | Konduktivitas termal natrium cair | $\text{W/(m}\cdot\text{K)}$ |
+| $L_e, L_a, L_c$ | Panjang evaporator, adiabatik, dan kondensor | $\text{m}$ |
+| $L_{eff}$ | Panjang efektif hidrolik pipa kalor | $\text{m}$ |
+| $Ma$ | Bilangan Mach aliran uap aksial | $-$ |
+| $\dot{m}$ | Laju alir massa fluida | $\text{kg/s}$ |
+| $P_{sat}$ | Tekanan uap jenuh | $\text{Pa}$ |
+| $Q$ | Laju perpindahan panas / daya termal | $\text{W}$ |
+| $Q_{cap}$ | Batas perpindahan panas kapiler | $\text{W}$ |
+| $Q_{sonic}$ | Batas perpindahan panas sonik | $\text{W}$ |
+| $Q_{ent}$ | Batas perpindahan panas entrainment | $\text{W}$ |
+| $Q_{boil}$ | Batas perpindahan panas pendidihan | $\text{W}$ |
+| $R_{th}$ | Hambatan termal ekivalen | $\text{K/W}$ |
+| $r_{eff}$ | Radius pori kapiler efektif | $\text{m}$ |
+| $T$ | Temperatur fluida / material | $\text{K}$ |
+
+### Lambang Yunani {.unnumbered}
+
+| Lambang | Kuantitas | Satuan |
+| :--- | :--- | :--- |
+| $\gamma$ | Rasio panas jenis gas ($C_p/C_v$) | $-$ |
+| $\Delta P_c$ | Tekanan pemompaan kapiler maksimum | $\text{Pa}$ |
+| $\Delta P_l$ | Penurunan tekanan aliran cairan | $\text{Pa}$ |
+| $\Delta P_v$ | Penurunan tekanan aliran uap aksial | $\text{Pa}$ |
+| $\mu_l$ | Viskositas dinamik cairan | $\text{Pa}\cdot\text{s}$ |
+| $\mu_v$ | Viskositas dinamik uap | $\text{Pa}\cdot\text{s}$ |
+| $\rho_l$ | Massa jenis fasa cair | $\text{kg/m}^3$ |
+| $\rho_v$ | Massa jenis fasa uap | $\text{kg/m}^3$ |
+| $\sigma$ | Tegangan permukaan fluida kerja | $\text{N/m}$ |
+
+### Singkatan {.unnumbered}
+
+| Singkatan | Kepanjangan |
+| :--- | :--- |
+| **BOL** | *Beginning of Life* |
+| **DHR** | *Decay Heat Removal* |
+| **EM** | *Electromagnetic* |
+| **HEU** | *High-Enriched Uranium* |
+| **ISR** | *Indonesian Space Reactor* |
+| **KRUSTY** | *Kilowatt Reactor Using Stirling Technology* |
+| **LEU** | *Low-Enriched Uranium* |
+| **MAPE** | *Mean Absolute Percentage Error* |
+| **NASA** | *National Aeronautics and Space Administration* |
+| **RMSE** | *Root Mean Square Error* |
+| **ROM** | *Reduced-Order Model* |
+| **SSA** | *Spectral Shift Absorber* |
+| **UN** | *Uranium Nitride* |
+
+\newpage
+
+# INTISARI {.unnumbered}
+
+::: {style="text-align: center;"}
+### MODEL TEREDUKSI DUA FASA PIPA KALOR NATRIUM PADA REAKTOR NUKLIR INDONESIAN SPACE REACTOR {.unnumbered}
+
+**Muhammad Naufal Tamimi**  
+**20/456315/TK/50445**  
+
+Diajukan kepada Departemen Teknik Nuklir dan Teknik Fisika Fakultas Teknik  
+Universitas Gadjah Mada pada tahun 2025  
+untuk memenuhi sebagian persyaratan untuk memperoleh derajat  
+Sarjana Program Studi Teknik Nuklir  
+:::
+
+\vspace{0.8cm}
+
+### INTISARI {.unnumbered}
+
+Desain konseptual reaktor antariksa Indonesian Space Reactor (ISR) 500 kWth awalnya menggunakan sirkulasi paksa logam cair Na-78K dengan pompa elektromagnetik. Namun, sistem pompa aktif memiliki keterbatasan signifikan berupa konsumsi daya parasitik (~18,5 kWe), getaran mikro (*microphonics*) yang mengganggu instrumen wahana antariksa, serta risiko kegagalan titik tunggal (*single-point failure*). Pipa kalor natrium dua fasa beroperasi secara pasif melalui aksi kapiler sumbu pori tanpa komponen bergerak, menjadikannya kandidat ideal untuk menggantikan pompa aktif pada ISR.
+
+Penelitian ini mengembangkan simulator numerik model tereduksi (*Reduced-Order Model*/ROM) satu dimensi aliran dua fasa pipa kalor logam cair dalam kondisi mikrogravitasi. Model memformulasi jaringan hambatan termal, hidrodinamika uap kompresibel, aliran cairan Darcy, serta mengevaluasi batas-batas operasional (kapiler, sonik, *entrainment*, pendidihan, dan viskos). Model divalidasi terhadap data eksperimen uji lapangan reaktor KRUSTY/Kilopower NASA (1,2–5,0 kWt pada 745–830 °C), kemudian diaplikasikan untuk meredesain sistem pembuangan panas pada teras heksagonal 61 pin bahan bakar ISR.
+
+Hasil validasi menunjukkan akurasi tinggi dengan nilai *Root Mean Square Error* (RMSE) sebesar 0,779 K, *Mean Absolute Percentage Error* (MAPE) 6,03%, dan koefisien determinasi $R^2 = 0,9853$. Penerapan 61 pipa kalor natrium mandiri beramplop Mo-30Re pada teras ISR 500 kWth menghasilkan margin kapiler sebesar 37,5% pada pin pusat terpanas (10,49 kWt) dan > 48% pada temperatur operasi 980–1000 K, dengan temperatur puncak bahan bakar UN sebesar 1049,6 K (sangat aman di bawah titik leleh 3100 K). Penggantian sistem pompa berhasil mengeliminasi 18,5 kWe daya parasitik listrik, mereduksi massa pendingin sebesar 14,3 kg, dan mewujudkan pendinginan pasif sejati.
+
+**Kata kunci:** Pipa Kalor Natrium, Aliran Dua Fasa, Model Tereduksi, Indonesian Space Reactor, KRUSTY, Mikrogravitasi.
+
+\vspace{0.8cm}
+**Pembimbing Utama:** Dr. Ir. Alexander Agung, S.T., M.Sc., IPU  
+**Pembimbing Pendamping:** Ir. Andang Widi Harto, M.T., Ph.D.  
+
+\newpage
+
+# ABSTRACT {.unnumbered}
+
+::: {style="text-align: center;"}
+### REDUCED-ORDER TWO-PHASE FLOW SODIUM HEAT PIPE MODEL FOR THE INDONESIAN SPACE REACTOR {.unnumbered}
+
+**Muhammad Naufal Tamimi**  
+**20/456315/TK/50445**  
+
+Submitted to the Department of Nuclear Engineering and Engineering Physics  
+Faculty of Engineering Universitas Gadjah Mada in 2025  
+in partial fulfillment of the requirement for the Degree of  
+Bachelor of Engineering in Nuclear Engineering  
+:::
+
+\vspace{0.8cm}
+
+### ABSTRACT {.unnumbered}
+
+The conceptual core design of the 500 kWth Indonesian Space Reactor (ISR) originally utilized forced convection liquid metal Na-78K coolant propelled by electromagnetic pumps. However, active pump systems incur major penalties in deep-space missions, including parasitic electric power demand (~18.5 kWe), mechanical microphonics disruptive to sensitive payload sensors, and critical single-point failure vulnerability. High-temperature alkali metal sodium two-phase heat pipes operate completely passively via capillary action within porous wicks, presenting a superior alternative to replace active pumps.
+
+In this work, a 1D reduced-order numerical model (ROM) for two-phase alkali metal heat pipe flow in microgravity environments was developed and coded in Python. The simulator models coupled thermal resistance networks, compressible vapor aerodynamics, liquid return Darcy flow in annular screen wicks, and calculates the governing operating limits (capillary, sonic, entrainment, boiling, and viscous limits). The solver was verified and benchmarked against experimental field data from the NASA KRUSTY/Kilopower reactor tests (1.2–5.0 kWt at 745–830 °C), and subsequently applied to redesign the thermal-hydraulic core of the 61-fuel-pin hexagonal ISR.
+
+The benchmark validation demonstrates excellent predictive fidelity with a Root Mean Square Error (RMSE) of 0.779 K, Mean Absolute Percentage Error (MAPE) of 6.03%, and determination coefficient $R^2 = 0.9853$. Core integration of 61 individual sodium heat pipes with Mo-30Re envelopes into the 500 kWth ISR core reveals a minimum capillary margin of 37.5% at the peak center pin (10.49 kWt) and > 48% at 980–1000 K, maintaining the maximum UN fuel temperature at 1049.6 K (far below the UN melting threshold of ~3100 K). Replacing the active Na-78K pump system eliminates 18.5 kWe of auxiliary power, trims 14.3 kg of coolant mass, and achieves true inherent passive safety.
+
+**Keywords:** Sodium Heat Pipe, Two-Phase Flow, Reduced-Order Model, Indonesian Space Reactor, KRUSTY, Microgravity.
+
+\vspace{0.8cm}
+**Supervisor:** Dr. Ir. Alexander Agung, S.T., M.Sc., IPU  
+**Co-supervisor:** Ir. Andang Widi Harto, M.T., Ph.D.  

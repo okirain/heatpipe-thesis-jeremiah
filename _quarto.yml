@@ -1,0 +1,48 @@
+project:
+  type: book
+  title: "Model Tereduksi Dua Fasa Pipa Kalor Natrium pada Reaktor Nuklir Indonesian Space Reactor"
+  output-dir: _output
+
+book:
+  title: "Skripsi Teknik Nuklir UGM"
+  subtitle: "Model Tereduksi Dua Fasa Pipa Kalor Natrium pada Indonesian Space Reactor (ISR)"
+  author:
+    - name: "Muhammad Naufal Tamimi"
+      affiliation: "Departemen Teknik Nuklir dan Teknik Fisika, Fakultas Teknik, Universitas Gadjah Mada"
+      note: "NIM: 20/456315/TK/50445"
+  date: "2025"
+  chapters:
+    - index.qmd
+    - bab1_pendahuluan.qmd
+    - bab2_tinjauan_pustaka.qmd
+    - bab3_dasar_teori.qmd
+    - bab4_pelaksanaan.qmd
+    - bab5_hasil_pembahasan.qmd
+    - bab6_kesimpulan_saran.qmd
+    - daftar_pustaka.qmd
+  appendices:
+    - lampiran_a.qmd
+    - lampiran_b.qmd
+
+bibliography: references.bib
+csl: ieee.csl
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    mathjax: true
+  pdf:
+    documentclass: report
+    papersize: a4
+    geometry:
+      - top=30mm
+      - left=40mm
+      - right=30mm
+      - bottom=30mm
+    fontsize: 12pt
+    linestretch: 1.5
+    number-sections: true
+    toc: false

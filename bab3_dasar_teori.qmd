@@ -1,0 +1,187 @@
+# BAB III DASAR TEORI
+
+## III.1. Termohidrolika Aliran Dua Fasa Pipa Kalor Logam Cair
+
+Pipa kalor bekerja berdasarkan siklus termodinamika tertutup perpindahan panas dua fasa yang melibatkan tiga zona utama di sepanjang sumbu aksial $z$:
+1. **Zona Evaporator ($L_e$):** Kalor dari sumber panas eksternal (teras reaktor nuklir) dikonduksikan menembus dinding pipa dan struktur sumbu berpori (*wick*), menyebabkan cairan natrium di permukaan meniskus menguap menjadi uap bertekanan tinggi.
+2. **Zona Adiabatik ($L_a$):** Uap panas berkecepatan tinggi mengalir di dalam inti uap (*vapor core*) menuju ujung pipa yang lebih dingin tanpa adanya pertukaran kalor signifikan dengan lingkungan luar.
+3. **Zona Kondensor ($L_c$):** Uap melepaskan kalor laten penguapan ke penyerap panas (*heat sink*, seperti mesin Stirling atau radiator termal luar angkasa) dan terkondensasi kembali menjadi fasa cair pada dinding dalam sumbu pori. Cairan yang terbentuk kemudian dipompa kembali menuju evaporator oleh aksi kapiler sumbu pori [@faghri1995heat].
+
+Keseimbangan massa total dalam pipa kalor tertutup mengikuti:
+$$
+\oint \dot{m} \, dz = 0 \implies \dot{m}_v(z) = \dot{m}_l(z) = \frac{Q(z)}{h_{fg}}
+$$ {#eq-3-1}
+
+dengan $\dot{m}_v$ dan $\dot{m}_l$ berturut-turut merupakan laju alir massa fasa uap dan cair ($\text{kg/s}$), $Q(z)$ adalah daya termal aksial ($\text{W}$), dan $h_{fg}$ adalah panas laten penguapan ($\text{J/kg}$).
+
+## III.2. Batas-Batas Operasi Pipa Kalor Logam Cair
+
+Kapasitas maksimum angkut kalor sebuah pipa kalor tidak tak terbatas, melainkan dibatasi oleh lima fenomena fisika kritis [@faghri1995heat; @chi1976heat; @dunn1994heat].
+
+### 1. Batas Kapiler (*Capillary Limit*)
+
+Batas kapiler merupakan batas operasional paling fundamental pada kondisi tunak. Sirkulasi fluida dua fasa kontinu hanya dapat berlangsung jika tekanan kapiler maksimum yang dibangkitkan oleh pori-pori sumbu mampu mengatasi seluruh penurunan tekanan fluida di sepanjang sirkuit:
+$$
+\Delta P_{c,max} \ge \Delta P_v + \Delta P_l + \Delta P_g
+$$ {#eq-3-2}
+
+Berdasarkan persamaan Young-Laplace, tekanan kapiler maksimum dinyatakan sebagai:
+$$
+\Delta P_{c,max} = \frac{2 \sigma}{r_{eff}}
+$$ {#eq-3-3}
+
+dengan $\sigma$ adalah tegangan permukaan natrium cair ($\text{N/m}$) dan $r_{eff}$ adalah radius pori efektif sumbu kapiler ($\text{m}$).
+
+Penurunan tekanan fasa cair ($\Delta P_l$) dihitung melalui hukum Darcy untuk aliran fluida pada media berpori:
+$$
+\Delta P_l = \int_0^{L_{total}} \frac{\mu_l \dot{m}_l(z)}{\rho_l A_{flow,l} K} \, dz = \frac{\mu_l L_{eff} Q}{\rho_l A_{flow,l} K h_{fg}}
+$$ {#eq-3-4}
+
+Untuk struktur *annular screen wick* dengan celah anulus setebal $w_{gap}$, permeabilitas aliran cairan anulus mengikuti relasi celah celah paralel Stokes:
+$$
+K_{ann} = \frac{w_{gap}^2}{12}
+$$ {#eq-3-5}
+
+Sedangkan penurunan tekanan fasa uap ($\Delta P_v$) untuk aliran laminer Hagen-Poiseuille adalah:
+$$
+\Delta P_v = \frac{8 \mu_v L_{eff} Q}{\pi \rho_v r_v^4 h_{fg}}
+$$ {#eq-3-6}
+
+dengan panjang efektif hidrolik $L_{eff} = 0,5 L_e + L_a + 0,5 L_c$. Dengan demikian, laju perpindahan panas maksimum batas kapiler ($Q_{cap}$) diformulasikan sebagai:
+$$
+Q_{cap} = \frac{\Delta P_{c,max} - \Delta P_g}{\left( \frac{\mu_l}{\rho_l A_{flow,l} K h_{fg}} + \frac{8 \mu_v}{\pi \rho_v r_v^4 h_{fg}} \right) L_{eff}}
+$$ {#eq-3-7}
+
+Margin keselamatan kapiler (*capillary margin*) didefinisikan sebagai:
+$$
+M_{cap} = 1 - \frac{\Delta P_v + \Delta P_l + \Delta P_g}{\Delta P_{c,max}}
+$$ {#eq-3-8}
+
+### 2. Batas Sonik (*Sonic Limit*)
+
+Pada temperatur awal yang rendah (seperti saat *startup* dari kondisi beku), massa jenis uap natrium ($\rho_v$) bernilai sangat kecil akibat tekanan jenuh yang rendah. Kecepatan aksial uap di ujung keluar evaporator dapat mencapai kecepatan suara lokal ($Ma = 1$), menyebabkan fenomena *choked flow*. Berdasarkan model ekspansi gas kompresibel Levy [@faghri1995heat], batas perpindahan panas sonik adalah:
+$$
+Q_{sonic} = A_v \rho_v h_{fg} \sqrt{\frac{\gamma R_g T_v}{2(\gamma + 1)}}
+$$ {#eq-3-9}
+
+dengan $A_v = \pi r_v^2$ adalah luas penampang inti uap, $\gamma = C_p/C_v$ adalah rasio panas jenis uap logam cair (~1,33 untuk uap natrium), dan $R_g = R / M_{Na}$ adalah konstanta gas spesifik ($361,66\text{ J/(kg}\cdot\text{K)}$).
+
+### 3. Batas Entrainment (*Entrainment Limit*)
+
+Ketika uap natrium mengalir dengan kecepatan sangat tinggi di atas permukaan sumbu basah, gaya geser antarmuka uap-cairan dapat merobek tetesan cairan keluar dari pori sumbu (*droplet entrainment*), yang kemudian terbawa aliran uap menuju kondensor dan menyebabkan kekeringan (*dryout*) pada evaporator. Batas entrainment dimodelkan melalui kriteria bilangan Weber kritis ($We \approx 1$) [@faghri1995heat]:
+$$
+Q_{ent} = A_v h_{fg} \sqrt{\frac{\sigma \rho_v}{2 r_{hs}}}
+$$ {#eq-3-10}
+
+dengan $r_{hs}$ adalah radius hidrolik pori kawat anyaman permukaan ($r_{hs} \approx 0,5 r_{eff}$).
+
+### 4. Batas Pendidihan (*Boiling Limit*)
+
+Jika fluks panas radial pada dinding evaporator terlalu tinggi, gelembung uap dapat mengalami nukleasi di dalam struktur sumbu pori (*nucleate boiling*). Gelembung yang terjebak akan menghambat pasokan cairan kembali ke dinding tabung, memicu kenaikan temperatur dinding secara drastis (*burnout*). Batas pendidihan dinyatakan sebagai [@chi1976heat]:
+$$
+Q_{boil} = \frac{2 \pi L_e k_{eff} \Delta T_{crit}}{\ln(r_i / r_v)}
+$$ {#eq-3-11}
+
+dengan superheat kritis nukleasi $\Delta T_{crit}$:
+$$
+\Delta T_{crit} = \frac{2 \sigma T_{sat}}{h_{fg} \rho_v r_n}
+$$ {#eq-3-12}
+
+di mana $r_n$ adalah radius rongga nukleasi tipikal (~$1,0 \times 10^{-6}\text{ m}$ pada permukaan logam cair) dan $k_{eff}$ adalah konduktivitas termal efektif sumbu pori yang terbasahi natrium cair.
+
+### 5. Batas Viskos (*Viscous Limit*)
+
+Pada temperatur awal yang sangat rendah saat tekanan uap jenuh mendekati nol, gaya viskos uap mendominasi gradien tekanan statis, sehingga aliran uap terhambat secara viskos [@faghri1995heat]:
+$$
+Q_{visc} = \frac{A_v r_v^2 h_{fg} \rho_v P_{sat}}{16 \mu_v L_{eff}}
+$$ {#eq-3-13}
+
+Kapasitas operasional maksimum pipa kalor pada sembarang temperatur $T$ merupakan nilai minimum dari seluruh batas tersebut:
+$$
+Q_{max}(T) = \min \left\{ Q_{cap}(T), \, Q_{sonic}(T), \, Q_{ent}(T), \, Q_{boil}(T), \, Q_{visc}(T) \right\}
+$$ {#eq-3-14}
+
+## III.3. Formulasi Model Tereduksi (ROM) Jaringan Hambatan Termal
+
+Perpindahan panas radial dan aksial pada pipa kalor dapat dimodelkan secara tereduksi melalui analogi sirkuit hambatan termal ekivalen ($R_{th}$) [@faghri1995heat; @dunn1994heat]:
+$$
+R_{total} = R_{wall,e} + R_{wick,e} + R_{vapor} + R_{wick,c} + R_{wall,c}
+$$ {#eq-3-15}
+
+Komponen-komponen hambatan termal dinyatakan sebagai:
+1. **Konduksi radial dinding evaporator ($R_{wall,e}$):**
+   $$
+   R_{wall,e} = \frac{\ln(r_o / r_i)}{2 \pi k_{wall} L_e}
+   $$ {#eq-3-16}
+2. **Konduksi radial sumbu basah evaporator ($R_{wick,e}$):**
+   $$
+   R_{wick,e} = \frac{\ln(r_i / r_v)}{2 \pi k_{eff} L_e}
+   $$ {#eq-3-17}
+3. **Hambatan inti uap aksial ($R_{vapor}$):**
+   $$
+   R_{vapor} = \frac{T_v \Delta P_v}{\rho_v h_{fg}^2 Q}
+   $$ {#eq-3-18}
+4. **Konduksi radial sumbu basah kondensor ($R_{wick,c}$):**
+   $$
+   R_{wick,c} = \frac{\ln(r_i / r_v)}{2 \pi k_{eff} L_c}
+   $$ {#eq-3-19}
+5. **Konduksi radial dinding kondensor ($R_{wall,c}$):**
+   $$
+   R_{wall,c} = \frac{\ln(r_o / r_i)}{2 \pi k_{wall} L_c}
+   $$ {#eq-3-20}
+
+Penurunan temperatur total sepanjang pipa kalor adalah:
+$$
+\Delta T_{total} = T_{wall,e} - T_{wall,c} = Q \cdot R_{total}
+$$ {#eq-3-21}
+
+## III.4. Efek Mikrogravitasi dan Beban Akselerasi
+
+Dalam lingkungan orbit antariksa atau perjalanan antarplanet, percepatan gravitasi efektif bernilai nol ($g \approx 0\text{ m/s}^2$). Konsekuensinya, suku penurunan tekanan hidrostatik gravitasi lenyap:
+$$
+\Delta P_g = \rho_l g L_{total} \sin\phi = 0
+$$ {#eq-3-22}
+
+Kondisi ini memastikan bahwa kapasitas angkut panas pipa kalor natrium dalam mikrogravitasi sepenuhnya ditentukan oleh interaksi antara daya hisap kapiler ($\Delta P_{c,max}$) dan gesekan viskos ($\Delta P_v + \Delta P_l$), tanpa ada penalti gravitasi elevasi.
+
+Sebaliknya, pada fase peluncuran wahana antariksa dengan akselerasi dorong roket sebesar $a_{thrust} = 3g$ hingga $5g$ ($30\text{--}50\text{ m/s}^2$), timbul komponen gaya inersia hidrostatik:
+$$
+\Delta P_{g,launch} = \rho_l \cdot a_{thrust} \cdot L_{total}
+$$ {#eq-3-23}
+
+Untuk natrium cair ($\rho_l \approx 800\text{ kg/m}^3$) dan panjang pipa $L = 1,0\text{ m}$ pada akselerasi $3g$ ($29,4\text{ m/s}^2$), diperoleh $\Delta P_{g,launch} \approx 2350\text{ Pa}$. Nilai ini masih jauh berada di bawah tekanan kapiler maksimum sumbu kasa 400 mesh ($\Delta P_{c,max} \approx 8280\text{ Pa}$), membuktikan bahwa struktur sumbu kapiler yang dirancang memiliki ketahanan inersia yang aman selama fase dinamis peluncuran.
+
+## III.5. Sifat Termofisika Logam Cair Natrium
+
+Korelasi termofisika natrium cair yang digunakan dalam model ini diturunkan dari data empiris berakurasi tinggi Argonne National Laboratory (ANL-RE-95/2) [@fink1995thermodynamic] pada rentang temperatur 600--1400 K:
+
+1. **Tekanan uap jenuh ($P_{sat}$ dalam Pa):**
+   $$
+   \ln(P_{sat} \, [\text{MPa}]) = 11,9463 - \frac{12633,73}{T} - 0,5 \ln(T)
+   $$ {#eq-3-24}
+2. **Massa jenis fasa cair ($\rho_l$ dalam $\text{kg/m}^3$):**
+   $$
+   \rho_l(T) = 1011,8 - 0,22054 \, T - 1,9226 \times 10^{-5} \, T^2 + 5,637 \times 10^{-9} \, T^3
+   $$ {#eq-3-25}
+3. **Panas laten penguapan ($h_{fg}$ dalam $\text{J/kg}$):**
+   $$
+   h_{fg}(T) = 4,76 \times 10^6 - 9,1 \times 10^2 \, T
+   $$ {#eq-3-26}
+4. **Tegangan permukaan ($\sigma$ dalam $\text{N/m}$):**
+   $$
+   \sigma(T) = 0,2405 - 1,0 \times 10^{-4} \, T
+   $$ {#eq-3-27}
+5. **Viskositas dinamik fasa cair ($\mu_l$ dalam $\text{Pa}\cdot\text{s}$):**
+   $$
+   \ln(\mu_l) = -6,4406 - 0,3958 \ln(T) + \frac{556,835}{T}
+   $$ {#eq-3-28}
+6. **Konduktivitas termal fasa cair ($k_l$ dalam $\text{W/(m}\cdot\text{K)}$):**
+   $$
+   k_l(T) = 93,0 - 0,0581 \, T + 1,173 \times 10^{-5} \, T^2
+   $$ {#eq-3-29}
+
+## III.6. HIPOTESIS
+
+Berdasarkan tinjauan teoretis dan formulasi termohidrolika di atas, diajukan hipotesis penelitian sebagai berikut:
+1. Model numerik tereduksi (ROM) satu dimensi yang mengintegrasikan dinamika uap Levy-Poiseuille dan aliran cairan Darcy pada struktur sumbu anulus mampu memprediksi penurunan temperatur dan hambatan termal pipa kalor natrium eksperimen KRUSTY NASA dengan nilai $R^2 \ge 0,95$ dan galat relatif rata-rata (MAPE) $\le 10\%$.
+2. Penggantian sistem sirkulasi pompa Na-78K pada teras 61 pin Indonesian Space Reactor (ISR) 500 kWth dengan pipa kalor natrium beramplop Mo-30Re layak secara termohidrolika, mampu mempertahankan margin kapiler $M_{cap} > 30\%$ pada pin pusat terpanas (10,49 kWt), menjaga temperatur puncak bahan bakar UN di bawah 1200 K, serta mengeliminasi daya parasitik listrik sebesar 18,5 kWe dan getaran mekanik secara total.
